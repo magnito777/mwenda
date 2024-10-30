@@ -31,7 +31,7 @@ const auth = new google.auth.GoogleAuth({
 const sheets = google.sheets({ version: 'v4', auth });
 
 // Get data
-app.get('/mwenda', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
@@ -45,7 +45,7 @@ app.get('/mwenda', async (req, res) => {
 });
 
 // Post request to append data
-app.post('/mwenda', async (req, res) => {
+app.post('/', async (req, res) => {
   try {
     const { values } = req.body;
     const response = await sheets.spreadsheets.values.append({
@@ -61,7 +61,7 @@ app.post('/mwenda', async (req, res) => {
 });
 
 // Put request to update data
-app.put('/mwenda', async (req, res) => {
+app.put('/', async (req, res) => {
   try {
     const { values, row } = req.body;
     if (!values || !row) return res.status(400).send('Values and row number are required');
@@ -80,7 +80,7 @@ app.put('/mwenda', async (req, res) => {
 });
 
 // Delete request to clear data
-app.delete('/mwenda', async (req, res) => {
+app.delete('/', async (req, res) => {
   try {
     const { row } = req.body;
     if (!row) return res.status(400).send('Row number is required');
@@ -97,7 +97,7 @@ app.delete('/mwenda', async (req, res) => {
 });
 
 // Search request to find data
-app.get('/mwenda/search', async (req, res) => {
+app.get('/search', async (req, res) => {
   const { column, value } = req.query;
 
   try {
