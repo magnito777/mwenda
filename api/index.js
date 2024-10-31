@@ -35,7 +35,7 @@ app.get('/', async (req, res) => {
   try {
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: `${sheetName}!A1:AK1000`,
+      range: `${sheetName}!A1:AJ1000`,
     });
     res.status(200).json(response.data.values);
   } catch (error) {
@@ -50,7 +50,7 @@ app.post('/', async (req, res) => {
     const { values } = req.body;
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId,
-      range: `${sheetName}!A1:Z1000`,
+      range: `${sheetName}!A1:AJ1000`,
       valueInputOption: 'RAW',
       resource: { values },
     });
@@ -66,7 +66,7 @@ app.put('/', async (req, res) => {
     const { values, row } = req.body;
     if (!values || !row) return res.status(400).send('Values and row number are required');
 
-    const range = `${sheetName}!A${row}:Z${row}`;
+    const range = `${sheetName}!A${row}:AJ${row}`;
     const response = await sheets.spreadsheets.values.update({
       spreadsheetId,
       range,
@@ -85,7 +85,7 @@ app.delete('/', async (req, res) => {
     const { row } = req.body;
     if (!row) return res.status(400).send('Row number is required');
 
-    const range = `${sheetName}!A${row}:Z${row}`;
+    const range = `${sheetName}!A${row}:AJ${row}`;
     const response = await sheets.spreadsheets.values.clear({
       spreadsheetId,
       range,
@@ -105,7 +105,7 @@ app.get('/search', async (req, res) => {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: `${sheetName}!A1:Z1000`,
+      range: `${sheetName}!A1:AJ1000`,
     });
 
     const rows = response.data.values;
