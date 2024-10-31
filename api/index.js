@@ -35,7 +35,7 @@ app.get('/', async (req, res) => {
   try {
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
-      range: `${sheetName}!A1:Z1000`,
+      range: `${sheetName}!A1:AK1000`,
     });
     res.status(200).json(response.data.values);
   } catch (error) {
