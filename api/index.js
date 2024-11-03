@@ -10,6 +10,7 @@ app.use(express.json()); // Parse JSON bodies
 
 app.use(express.urlencoded({ extended: true })); // For URL-encoded form submissions
 app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
 // Set Google Sheets ID and sheet name from environment variables
 const spreadsheetId = process.env.SPREADSHEET_ID;
 const sheetName = process.env.SHEET_NAME;
