@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combined Form - Demographics, Injury Mechanism, and Accident Info</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-green-50 p-6">
+  <div class="max-w-4xl mx-auto bg-green-100 p-8 rounded-lg shadow-md">
+
+    <h1 class="text-3xl font-bold mb-6 text-green-800">Demographic Information</h1>
+    <form action="/submit" method="POST" id="combinedForm" enctype="application/x-www-form-urlencoded">
+
+      <!-- Demographic Information Section -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Study Number</label>
+        <input type="number" name="study-number" class="mt-2 block w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Patient Number</label>
+        <input type="number" name="patientnumber" class="mt-2 block w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">X-ray Number</label>
+        <input type="text" name="xraynumber" class="mt-2 block w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Age (years)</label>
+        <input type="number" name="age" class="mt-2 block w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Sex</label>
+        <div class="mt-2 space-y-3">
+          <label><input type="radio" name="sex" value="male" class="mr-3">Male</label>
+          <label><input type="radio" name="sex" value="female" class="mr-3">Female</label>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Area of Residence</label>
+        <input type="text" name="residence" class="mt-2 block w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Occupation</label>
+        <input type="text" name="occupation" class="mt-2 block w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Level of Education</label>
+        <div class="mt-2 space-y-3">
+          <label><input type="radio" name="education_level" value="primary" class="mr-3">Primary</label>
+          <label><input type="radio" name="education_level" value="secondary" class="mr-3">Secondary</label>
+          <label><input type="radio" name="education_level" value="tertiary" class="mr-3">Tertiary</label>
+        </div>
+      </div>
+
+      <!-- Mechanism of Injury & Clinical Examination Section -->
+      <h2 class="text-3xl font-bold mt-8 mb-4 text-green-800">Mechanism of Injury & Clinical Examination</h2>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Accident Location</label>
+        <div class="grid grid-cols-3 gap-4 mt-2">
+          <input type="text" name="district" placeholder="District" class="w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+          <input type="text" name="village" placeholder="Village/Location" class="w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+          <input type="text" name="road" placeholder="Road" class="w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+        </div>
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Date/Day/Time of Crash</label>
+        <div class="grid grid-cols-3 gap-4 mt-2">
+          <input type="date" name="crash_date" class="w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+          <input type="text" name="crash_day" placeholder="Day" class="w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+          <input type="time" name="crash_time" class="w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+        </div>
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Referral</label>
+        <div class="mt-2">
+          <label><input type="radio" name="referral" value="yes" class="mr-2">Yes</label>
+          <input type="text" name="referring_hospital" placeholder="Referring hospital" class="w-full border-green-300 rounded-lg shadow-md text-lg p-3">
+          <label><input type="radio" name="referral" value="no" class="ml-4 mr-2">No</label>
+        </div>
+      </div>
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Mode of Evacuation to QECH</label>
+        <div class="mt-2 space-y-3">
+          <label><input type="radio" name="evacuation_mode" value="ambulance" class="mr-3">Ambulance</label>
+          <label><input type="radio" name="evacuation_mode" value="police_vehicle" class="mr-3">Police Vehicle</label>
+          <label><input type="radio" name="evacuation_mode" value="private_vehicle" class="mr-3">Private Vehicle</label>
+          <label><input type="radio" name="evacuation_mode" value="other" class="mr-3">Other (specify)</label>
+          <input type="text" name="other_evacuation" class="ml-3 w-full border-green-300 rounded-lg shadow-md text-lg p-3" placeholder="Specify">
+        </div>
+      </div>
+      
+      <!-- Mechanism of Injury Section -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Patient Position During Crash</label>
+        <!-- Input fields for patient position and crash type... (from the previous sections) -->
+      </div>
+
+      <!-- Clinical Examination Findings -->
+      <h2 class="text-2xl font-bold mt-8 mb-4 text-green-800">Clinical Examination Findings</h2>
+
+      <!-- Patient has a fracture -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Does the patient have a fracture?</label>
+        <div class="mt-2">
+          <input type="radio" id="fracture_yes" name="has_fracture" value="yes" class="mr-2 border-green-300 rounded shadow-md">
+          <label for="fracture_yes" class="text-lg text-green-700">Yes</label>
+          <input type="radio" id="fracture_no" name="has_fracture" value="no" class="ml-4 mr-2 border-green-300 rounded shadow-md">
+          <label for="fracture_no" class="text-lg text-green-700">No</label>
+        </div>
+      </div>
+
+      <!-- Single or Multiple Fractures -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">If Yes, are the fracture(s):</label>
+        <div class="mt-2">
+          <input type="radio" id="single_fracture" name="fracture_type" value="single" class="mr-2 border-green-300 rounded shadow-md">
+          <label for="single_fracture" class="text-lg text-green-700">Single</label>
+          <input type="radio" id="multiple_fracture" name="fracture_type" value="multiple" class="ml-4 mr-2 border-green-300 rounded shadow-md">
+          <label for="multiple_fracture" class="text-lg text-green-700">Multiple</label>
+        </div>
+        <div class="mt-4">
+          <label for="fracture_count" class="text-green-700">If multiple, how many:</label>
+          <input type="number" id="fracture_count" name="fracture_count" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-24">
+        </div>
+      </div>
+
+      <!-- Type of Fractures -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Type of Fractures</label>
+        <div class="mt-2">
+          <input type="radio" id="closed_fracture" name="fracture_nature" value="closed" class="mr-2 border-green-300 rounded shadow-md">
+          <label for="closed_fracture" class="text-lg text-green-700">Closed</label>
+          <input type="radio" id="open_fracture" name="fracture_nature" value="open" class="ml-4 mr-2 border-green-300 rounded shadow-md">
+          <label for="open_fracture" class="text-lg text-green-700">Open</label>
+        </div>
+        <div class="mt-4">
+          <label class="text-green-700">Gustilo Anderson Classification:</label>
+          <input type="text" name="gustilo_classification" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-full" placeholder="Specify classification">
+        </div>
+      </div>
+
+      <!-- Anatomical Site and Fracture Classification -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Anatomical Site and Fracture Classification on Radiological Findings</label>
+        <div class="mt-2">
+          <label for="fractured_bone" class="text-green-700">Fractured Bone on X-ray Film (from AO/OTA map):</label>
+          <input type="text" id="fractured_bone" name="fractured_bone" class="border-green-300 rounded-lg shadow-md text-lg p-2 w-full mt-2" placeholder="Specify AO/OTA classification">
+        </div>
+      </div>
+
+      <!-- Associated Injuries -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Associated Injuries</label>
+        <div class="mt-2 space-y-4">
+          <div>
+            <label class="text-green-700">Head Injury:</label>
+            <input type="text" name="head_injury_gcs" placeholder="GCS Score" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-full">
+          </div>
+          <div>
+            <label class="text-green-700">Maxillofacial Injury:</label>
+            <input type="text" name="maxillofacial_injury" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-full" placeholder="Describe injury">
+          </div>
+          <div>
+            <label class="text-green-700">Thoracic Injury:</label>
+            <input type="text" name="thoracic_injury" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-full" placeholder="Describe injury">
+          </div>
+          <div>
+            <label class="text-green-700">Abdominal Injury:</label>
+            <input type="text" name="abdominal_injury" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-full" placeholder="Describe injury">
+          </div>
+          <div>
+            <label class="text-green-700">Ophthalmic Injury:</label>
+            <input type="text" name="ophthalmic_injury" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-full" placeholder="Describe injury">
+          </div>
+          <div>
+            <label class="text-green-700">Soft Tissue Injuries:</label>
+            <input type="text" name="soft_tissue_injury" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-full" placeholder="Describe injury">
+          </div>
+          <div>
+            <label class="text-green-700">Other Injuries (specify):</label>
+            <input type="text" name="other_injuries" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-full" placeholder="Specify other injuries">
+          </div>
+          <div class="mt-4">
+            <label class="text-green-700">Injury Severity Score (ISS):</label>
+            <input type="number" name="iss_score" max="75" class="ml-4 border-green-300 rounded-lg shadow-md text-lg p-2 w-24" placeholder="Max 75">
+          </div>
+        </div>
+      </div>
+
+      <!-- Diagnosis -->
+      <div class="mb-6">
+        <label class="block text-lg font-medium text-green-700">Diagnosis</label>
+        <input type="text" name="diagnosis" class="mt-2 border-green-300 rounded-lg shadow-md text-lg p-2 w-full" placeholder="Enter diagnosis">
+      </div>
+
+      <div class="flex justify-end mt-6">
+        <button type="submit" class="py-3 px-6 bg-green-600 text-white rounded-lg shadow-md hover:bg-green-700">Submit</button>
+
+      </div>
+    </form>
+  </div>
+  
+</body>
+</html>

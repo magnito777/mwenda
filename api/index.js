@@ -1,12 +1,15 @@
 import express from "express";
 import { google } from 'googleapis';
 import dotenv from 'dotenv';
+import ejs from 'ejs';
 
 dotenv.config();
 
 const app = express();
 app.use(express.json()); // Parse JSON bodies
 
+app.use(express.urlencoded({ extended: true })); // For URL-encoded form submissions
+app.set('view engine', 'ejs');
 // Set Google Sheets ID and sheet name from environment variables
 const spreadsheetId = process.env.SPREADSHEET_ID;
 const sheetName = process.env.SHEET_NAME;
@@ -30,6 +33,99 @@ const auth = new google.auth.GoogleAuth({
 
 const sheets = google.sheets({ version: 'v4', auth });
 
+
+// Use body-parser middleware to parse form data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Route to render form page
+app.get('/form', (req, res) => {
+  res.render('form'); // Render index.ejs form page
+});
+
+
+app.post('/submit', async (req, res) => {
+  try {
+    // Map request body fields to Google Sheets values array
+    const values = [
+      [
+        req.body["patientnumber"], // Patient Number
+        req.body["study-number"],   // Study Number
+        req.body["xraynumber"],     // X-ray Number
+        req.body["age"],            // Age
+        req.body["sex"],            // Sex
+        req.body["residence"],      // Area of Residence
+        req.body["occupation"],     // Occupation
+        req.body["education_level"],// Level of Education
+        req.body["district"],       // District
+        req.body["village"],        // Village
+        req.body["road"],           // Road
+        req.body["crash_date"],     // Crash Date
+        req.body["crash_day"],      // Crash Day
+        req.body["crash_time"],     // Crash Time
+        req.body["referral"],       // Referral (Yes/No)
+        req.body["referring_hospital"], // Referring Hospital
+        req.body["evacuation_mode"], // Mode of Evacuation
+        req.body["has_fracture"],    // Fracture (Yes/No)
+        req.body["fracture_type"],   // Fracture Type (Single/Multiple)
+        req.body["fracture_nature"], // Fracture Nature (Closed/Open)
+        req.body["fractured_bone"],  // Fracture Site
+        req.body["gustilo_classification"], // Fracture Classification
+        req.body["head_injury_gcs"], // Head Injury GCS
+        req.body["iss_score"],       // ISS Score
+        req.body["diagnosis"],       // Diagnosis
+      ],
+    ];
+
+    // Append data to Google Sheets
+    const response = await sheets.spreadsheets.values.append({
+      spreadsheetId,
+      range: `${sheetName}!A1:AJ1000`,
+      valueInputOption: 'RAW',
+      resource: { values },
+    });
+
+    res.status(201).send(response.data);
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Get data
 app.get('/', async (req, res) => {
   try {
@@ -51,6 +147,7 @@ app.post('/', async (req, res) => {
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId,
       range: `${sheetName}!A1:AJ1000`,
+      range : `${sheetName}!A1:A1000`,
       valueInputOption: 'RAW',
       resource: { values },
     });
@@ -59,6 +156,8 @@ app.post('/', async (req, res) => {
     res.status(500).send(error.message);
   }
 });
+
+
 
 // Put request to update data
 app.put('/', async (req, res) => {
