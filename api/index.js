@@ -56,7 +56,7 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 
 // Route to render form page
-app.get('/', (req, res) => {
+app.get('/form', (req, res) => {
   res.render('form'); // Render index.ejs form page
 });
 
@@ -127,7 +127,7 @@ app.post('/submit', async (req, res) => {
 
 
 // Get data
-app.get('/api', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId,
