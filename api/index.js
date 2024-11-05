@@ -2,11 +2,15 @@ import express from "express";
 import { google } from 'googleapis';
 import dotenv from 'dotenv';
 import ejs from 'ejs';
+//import cors from 'cors';
+import cors from 'cors';
 
 dotenv.config();
 
 const app = express();
 app.use(express.json()); // Parse JSON bodies
+
+//use  cors
 
 app.use(express.urlencoded({ extended: true })); // For URL-encoded form submissions
 app.set('view engine', 'ejs');
@@ -46,7 +50,15 @@ const sheets = google.sheets({ version: 'v4', auth });
 
 
 
-
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  }
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
 
 
 
