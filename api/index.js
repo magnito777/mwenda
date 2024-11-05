@@ -3,7 +3,7 @@ import { google } from 'googleapis';
 import dotenv from 'dotenv';
 import ejs from 'ejs';
 //import cors from 'cors';
-import cors from 'cors';
+
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ app.use(express.json()); // Parse JSON bodies
 
 app.use(express.urlencoded({ extended: true })); // For URL-encoded form submissions
 app.set('view engine', 'ejs');
-app.use(cors());
+
 
 // Set Google Sheets ID and sheet name from environment variables
 const spreadsheetId = process.env.SPREADSHEET_ID;
