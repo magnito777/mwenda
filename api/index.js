@@ -2,7 +2,7 @@ import express from "express";
 import { google } from 'googleapis';
 import dotenv from 'dotenv';
 import ejs from 'ejs';
-import cors from 'cors';
+
 
 
 dotenv.config();
@@ -16,21 +16,7 @@ app.use(express.urlencoded({ extended: true })); // For URL-encoded form submiss
 app.set('view engine', 'ejs');
 
 // Initialize CORS middleware using promise
-const initMiddleware = (middleware) => {
-  return (req, res) => new Promise((resolve, reject) => {
-    middleware(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
-    });
-  });
-}
-// Configure CORS
-const cors = initMiddleware(Cors({
-  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
-  origin: '*', // Allow all origins, or specify a domain like 'https://yourdomain.com'
-}));
+
 
 
 
