@@ -2,7 +2,7 @@ import express from "express";
 import { google } from 'googleapis';
 import dotenv from 'dotenv';
 import ejs from 'ejs';
-//import cors from 'cors';
+import cors from 'cors';
 
 
 dotenv.config();
@@ -25,7 +25,7 @@ const initMiddleware = (middleware) => {
       return resolve(result);
     });
   });
-
+}
 // Configure CORS
 const cors = initMiddleware(Cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
